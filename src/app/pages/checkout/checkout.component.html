@@ -1,0 +1,90 @@
+
+    <!-- ======= Book A Table Section ======= -->
+    <section id="book-a-table" class="book-a-table mt-5">
+        <div class="container" data-aos="fade-up">
+  
+          <div class="section-header">
+            <h2>Checkout form</h2>
+            <p>Book <span>Your Stay</span> With Us</p>
+          </div>
+  
+          <div class="row g-0">
+            
+           
+  
+            <div class="col-lg-8 d-flex align-items-center">
+
+         
+
+              <form  #f='ngForm' (ngSubmit)="onSubmit(f)" method="post" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
+                <div class="alert alert-danger" *ngIf="state.error">
+                    Veuillez saisir tous les champs !
+                </div>
+
+                <div class="alert alert-success" *ngIf="state.success">
+                    Votre commande a été bien enregistrée !
+                </div>
+          
+                
+                <div class="row gy-4">
+                  <div class="col-lg-6 col-md-6">
+                    <input type="text" name="name" ngModel class="form-control" id="name" placeholder="Nom" data-rule="minlen:4" data-msg="Please enter at least 4 chars" required>
+                    <div class="validate"></div>
+                  </div>    
+                  <div class="col-lg-6 col-md-6">
+                    <input type="text" name="firstName" ngModel class="form-control" id="name" placeholder="Prénoms" data-rule="minlen:4" data-msg="Please enter at least 4 chars" required>
+                    <div class="validate"></div>
+                  </div>                 
+                  <div class="col-lg-12 col-md-6">
+                    <input type="tel" class="form-control" ngModel name="tel" id="phone" placeholder="Numéro Tel." data-rule="minlen:4" data-msg="Please enter at least 4 chars" required>
+                    <div class="validate"></div>
+                  </div>
+                  <div class="col-lg-12 col-md-6">
+                    <input type="text" name="address" ngModel class="form-control" id="date" placeholder="Adresse" data-rule="minlen:4" data-msg="Please enter at least 4 chars" required>
+                    <div class="validate"></div>
+                  </div>                  
+                </div>
+                
+                <br>
+                
+                <div class="mb-3">
+                  <div class="loading" *ngIf="state.loading">Loading</div>
+                  <div class="error-message" ></div>
+                  <div class="sent-message">Your booking request was sent. We will call back or send an Email to confirm your reservation. Thank you!</div>
+                </div>
+                <div class="text-center">
+                    <button type="submit" *ngIf="!state.loading">Finaliser</button>
+                    <button class="" type="submit" disabled *ngIf="state.loading">
+                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        Loading...
+                    </button>
+                </div>
+              </form>
+            </div><!-- End Reservation Form -->
+
+
+            <div class="col-lg-4 p-3">
+                <h4 class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="text-muted">Your cart</span>
+                    <span class="badge badge-secondary badge-pill">3</span>
+                  </h4>
+                  <ul class="list-group mb-3" *ngIf="cart">
+                    <li class="list-group-item d-flex justify-content-between lh-condensed" *ngFor="let c of cart">
+                      <div>
+                        <h6 class="my-0">{{c.title}} <small>(x{{c.quantity}})</small></h6>
+                        <small class="text-muted">{{ c.description }}</small>
+                      </div>
+                      <span class="text-muted">{{ c.price }}</span>
+                    </li>
+                    
+                    <li class="list-group-item d-flex justify-content-between" *ngIf="total">
+                      <span>Total (TND)</span>
+                      <strong>{{total}}</strong>
+                    </li>
+                  </ul>
+            </div>
+  
+          </div>
+  
+        </div>
+      </section><!-- End Book A Table Section -->

@@ -1,0 +1,97 @@
+<section id="hero" class="hero d-flex align-items-center section-bg bg-light">
+    
+    
+
+    <div class="container bg-light">
+        <div class="row">
+            <div class="col-md-12 mb-2">
+                <div class="container bg-light" *ngIf="order_detail">
+                    <div class="card mb-2" style="">
+                        <div class="card-body">
+                          <h5 class="card-title">Informations Clients</h5>
+                          <p class="card-text">
+                            <Strong>Nom & Prénoms : </Strong> {{order_detail.checkout_info.name + " " + order_detail.checkout_info.firstName}}
+                          </p>
+                          <p class="card-text">
+                            <Strong>Téléphone : </Strong> {{order_detail.checkout_info.tel}}
+                          </p>
+                          <p class="card-text">
+                            <Strong>Adresse : </Strong> {{order_detail.checkout_info.address}}
+                          </p>
+                        </div>
+                    </div>
+                    <div class="card" style="">
+                        <div class="card-body">
+                          <h5 class="card-title">Informations Commandes</h5>
+                          <table class="table">
+                            <thead>
+                              <tr>
+                                <th scope="col">#</th>
+                                <th scope="col"></th>
+                                <th scope="col">Plat</th>
+                                <th scope="col">Quantité</th>
+                                <th scope="col">Prix</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let c of order_detail.carts; let i=index;">
+                                <th scope="row">
+                                    <small>{{ i+1 }}</small>
+                                </th>
+                                <td>
+                                    <img src="{{c.img}}" alt="" srcset="" style="width: 150px; height: 100%;">
+                                </td>
+                                <td>
+                                    <small>{{c.title}}</small>
+                                </td>
+                                <td>
+                                    <small>{{c.quantity}}</small>
+                                </td>
+                                <td>
+                                    <small>{{c.price}} TND</small>
+                                </td>
+                              </tr>
+                              
+                            </tbody>
+                          </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <h2>Liste des commandes
+                    <a class="btn btn-primary" href="/products">Plats</a>
+                </h2>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nom & Prénoms</th>
+                        <th scope="col">Téléphone</th>
+                        <th scope="col">Adresse</th>
+                        <th scope="col"></th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let o of orders; let i=index;">
+                        <th scope="row">{{i+1}}</th>
+                        <td>{{ o.checkout_info.name + ' ' + o.checkout_info.firstName | titlecase }}</td>
+                        <td>{{o.checkout_info.tel }}</td>
+                        <td>{{ o.checkout_info.address | titlecase }}</td>
+                        <td>
+                            <button class="btn btn-info" (click)="getDetails(o)">Détails</button>
+                        </td>
+                    </tr>
+                    
+                    </tbody>
+                </table>
+            </div>
+
+            
+        </div>
+
+    </div>
+
+</section>

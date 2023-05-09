@@ -1,0 +1,40 @@
+
+<section id="hero" class="hero d-flex align-items-center section-bg">
+   
+    <div class="container">
+        <div class="row" *ngIf="meal">
+            <div class="col-md-6">
+                
+                <a href="/menu">
+                    <i class="material-icons">arrow_back</i>
+                    <small class="back">Retour au menu</small>
+                </a>
+
+                <img src="{{meal.img}}" alt="" srcset="" style="height: 600px; width: 100%;">
+            </div>
+            <div class="col-md-6 p-5">
+                <h2>{{ meal.title }}</h2>
+                <p>
+                    {{meal.description}}
+                </p>
+                <p>
+                    <strong>
+                        {{meal.price}} TND
+                    </strong>
+                </p>
+
+                
+                <a class="btn-book-a-table" style="cursor: pointer;" (click)="addCart(meal)" *ngIf="!state.in_cart && !meal_cart">Commander</a>
+                
+                
+                <a class="btn-book-a-table" style="cursor: pointer;" (click)="addCart(meal)" *ngIf="state.in_cart && meal_cart">Ajouter un nouveau</a>
+                <a class="btn-book-a-table" style="cursor: pointer;margin-left: 1rem;" (click)="removeProduct(meal_cart)" *ngIf="state.in_cart && meal_cart">Retirer du panier</a>
+                <br>
+                <small style="margin-left: 1rem;" *ngIf="state.in_cart && meal_cart">
+                    Quantité dans le panier: <strong>{{meal_cart.quantity}}</strong>
+                </small>
+
+            </div>
+        </div>
+    </div>
+</section>

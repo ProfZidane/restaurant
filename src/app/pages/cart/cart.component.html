@@ -1,0 +1,62 @@
+<section id="hero" class="hero d-flex align-items-center section-bg">
+    <div class="container">
+
+      <div class="row justify-content-between gy-5">
+
+        <div class="col-md-12">
+
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col"></th>
+                    <th scope="col">Plat</th>
+                    <th scope="col">Quantité</th>
+                    <th scope="col">Prix</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let c of cart; let i=index;">
+                    <th scope="row">
+                        <small>{{ i+1 }}</small>
+                    </th>
+                    <td>
+                        <img src="{{c.img}}" alt="" srcset="" style="width: 150px; height: 100%;">
+                    </td>
+                    <td>
+                        <a href="/meal-detail/{{c.id}}">
+                            <small>{{c.title}}</small>
+                        </a>
+                    </td>
+                    <td>
+                        <small>{{c.quantity}}</small>
+                    </td>
+                    <td>
+                        <small>{{c.price}} TND</small>
+                    </td>
+                    <td>
+                        <small class="text-danger" style="cursor: pointer;" (click)="removeProduct(c)"><i class="material-icons">delete</i></small>
+                    </td>
+                  </tr>
+                  
+                </tbody>
+              </table>
+
+              <small class="text-danger" *ngIf="!cart || cart.length==0">Pas de plats dans le panier</small>
+
+        </div>
+
+        <div class="col-md-12">
+            
+            <a class="btn-book-a-table"  href="/checkout" style="float: right;" disabled *ngIf="cart && cart.length!==0" >Validation</a>
+
+              <a class="btn-book-a-table" style="float: right; background-color: gray;" *ngIf="!cart || cart.length==0" >No Validation</a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+</section>

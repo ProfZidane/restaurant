@@ -1,0 +1,76 @@
+<section id="hero" class="hero d-flex align-items-center section-bg bg-light">
+    
+    <div class="container bg-light">
+
+        <div class="row">
+            <div class="col-md-12 mb-2" *ngIf="state.form">
+
+                <div class="alert alert-danger" *ngIf="state.error">
+                    Veuillez remplir tout le formulaire !
+                </div>
+
+                <form #f='ngForm' (ngSubmit)="onSubmit(f)">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Nom du plat</label>
+                      <input type="text" name="title" ngModel class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Description</label>
+                        <input type="text" name="description" ngModel class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Prix</label>
+                        <input type="text" name="price" ngModel class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">URL image</label>
+                        <input type="text" name="img" ngModel class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="" required>
+                      </div>                   
+                    <button type="submit" class="btn btn-primary" *ngIf="!state.loading">Submit</button>
+                    <button class="" type="submit" disabled *ngIf="state.loading">
+                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        Loading...
+                    </button>
+                </form>
+            </div>
+
+            <div class="col-md-12 mb-2">
+                <h2>
+                    Liste des plats
+                    
+                    <a class="btn-book-a-table" style="cursor:pointer;float: right;" (click)="openForm()">+Ajourer Plat</a>
+
+                </h2>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col"></th>
+                        <th scope="col">Produit</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Prix</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let m of meals;">                        
+                        <th scope="row">{{m.id}}</th>
+                        <td>
+                            <img src="{{m.img}}" alt="" srcset="" style="width: 150px; height: 100%;">
+                        </td>
+                        <td>{{ m.title }}</td>
+                        <td>{{m.description }}</td>
+                        <td>{{ m.price }}</td>
+                        
+                    </tr>
+                    
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
